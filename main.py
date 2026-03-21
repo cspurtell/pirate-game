@@ -4,5 +4,5 @@ def main():
     player = create_player
     tavern(player)
 
-if name == "__main__":
+if __name__ == "__main__":
     main()
