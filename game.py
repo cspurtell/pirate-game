@@ -55,16 +55,45 @@ def tavern(player):
             print("Invalid choice. Try again.")
 
 def talk_to_stranger(player):
-    print("\nA rough-looking sailor squints at you.")
+    npc = generate_npc()
 
-    if player.charisma >= 7:
-        print("You charm the sailor with ease.")
-        print("He buys you a drink and shares a rumor.")
-        player.gold += 2
-        player.reputation += 1
+    print(f"\nYou approach {npc['name']}, a {npc['trait']} {npc['role']}.")
+
+    if npc["trait"] == "friendly":
+        print("They greet you warmly.")
+
+        if player.charisma >= 6:
+            print("You have a pleasant conversation.")
+            player.gold += 3
+            player.reputation += 1
+        else:
+            print("You struggle to keep the conversation going.")
+
+    elif npc["trait"] == "hostile":
+        print("They immediately insult you.")
+
+        if player.strength >= 6:
+            print("You stare them down and they back off.")
+            player.reputation += 1
+        else:
+            print("You are forced to walk away, embarrassed.")
+
+    elif npc["trait"] == "greedy":
+        print("They offer to share information... for a price.")
+
+        if player.gold >= 5:
+            choice = input("Pay 5 gold? (y/n): ").strip().lower()
+            if choice == "y":
+                player.gold -= 5
+                print("You gain valuable intel.")
+                player.reputation += 1
+            else:
+                print("They scoff at your stinginess.")
+        else:
+            print("You cannot afford their price.")
+
     else:
-        print("The sailor laughs at your awkward attempt at conversation.")
-        print("You gain nothing but embarrassment.")
+        print("The encounter is uneventful, but interesting.")
 
 def play_dice(player):
     print("\nYou sit down at a crooked table for a game of dice.")
