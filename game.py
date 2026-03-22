@@ -28,6 +28,9 @@ def create_player():
     else:
         print("No specialty chosen. You are average in all things.")
 
+    player = Player(name, strength, charisma, luck)
+    return player
+
 def tavern(player):
     while True:
         print("\nYou are in a noisy tavern in Tortuga.")
