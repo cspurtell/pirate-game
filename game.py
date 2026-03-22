@@ -1,5 +1,6 @@
 import random
 from player import Player
+from npc import generate_npc
 
 def create_player():
     print("Welcome to Pirate Game!")
